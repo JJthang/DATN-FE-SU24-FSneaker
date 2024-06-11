@@ -170,59 +170,12 @@ export default function Header() {
                                             {category.name}
                                         </Link>
                                     </li>)}
-                                {/* <li>
-                                    <Link
-                                        className='px-5 py-2 flex items-center relative item-hover'
-                                        to='/collections/nike'
-                                    >
-                                        <span className='flex-1'>Nike</span>
-                                        <ChevronRightIcon className='w-3 ml-1' />
-                                        <ul className='item-child-hover absolute top-0 left-full w-[200px] bg-white z-10 py-2 shadow-lg'>
-                                            <li>
-                                                <Link
-                                                    className='px-5 py-2 flex items-center relative item-hover hover:text-neutral-700'
-                                                    to='/collections/af1'
-                                                >
-                                                    AF1
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link
-                                                    className='px-5 py-2 flex items-center relative item-hover hover:text-neutral-700'
-                                                    to='/collections/jordan'
-                                                >
-                                                    Jordan
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link
-                                                    className='px-5 py-2 flex items-center relative item-hover hover:text-neutral-700'
-                                                    to='/collections/blazer'
-                                                >
-                                                    Blazer
-                                                </Link>
-                                            </li>
-                                        </ul>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        className='px-5 py-2 flex items-center relative item-hover hover:text-neutral-700'
-                                        to='/collections/ascis-puma'
-                                    >
-                                        Ascis - Puma
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        className='px-5 py-2 flex items-center relative item-hover hover:text-neutral-700'
-                                        to='/collections/mlb'
-                                    >
-                                        MLB
-                                    </Link>
-                                </li> */}
-
                             </ul>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to='/products' className='hover:text-neutral-900'>
+                            Sản phẩm
                         </Link>
                     </li>
                     <li>
@@ -288,111 +241,6 @@ export default function Header() {
                         </Link>
                     </li>
                 </ul>
-
-                {/* <NavigationMenu>
-                <NavigationMenuList>
-                    <NavigationMenuItem>
-                        <Link to="/">
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            Hàng mới về
-                            </NavigationMenuLink>
-                        </Link>
-                    </NavigationMenuItem>
-                </NavigationMenuList>
-            </NavigationMenu>
-            <NavigationMenu>
-                <NavigationMenuList>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className="hover:bg-transparent">Sản phẩm</NavigationMenuTrigger>
-                        <NavigationMenuContent className="py-3 w-[300px]">
-                            <Link className="w-[200px] block" to="collections/nike">
-                                <NavigationMenuLink className="text-sm p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer relative flex items-center group" >
-                                    <span className="flex-1">Nike</span>
-                                    <ChevronRightIcon className="size-2 text-neutral-400 w-4 h-4"></ChevronRightIcon>
-                                    <div className="absolute top-0 w-[200px] right-full w-200px">
-                                        <Link className="block" to="collections/nike">
-                                            AF1
-                                        </Link>
-                                    </div>
-                                </NavigationMenuLink>
-                            </Link>
-                            <Link className="w-[200px] block" to="collections/adidas">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >Adidas</NavigationMenuLink>
-                            </Link>
-                            <Link className="w-[200px] block" to="collections/asics-puma">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >Asics - Puma</NavigationMenuLink>
-                            </Link>
-                            <Link className="w-[200px] block" to="collections/mlb">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >MLB</NavigationMenuLink>
-                            </Link>
-                            <Link className="w-[200px] block" to="collections/croon">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >CROON</NavigationMenuLink>
-                            </Link>
-                            <Link className="w-[200px] block" to="collections/fila">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >New Balance - Fila</NavigationMenuLink>
-                            </Link>
-                            <Link className="w-[200px] block" to="collections/luxury">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >Luxury</NavigationMenuLink>
-                            </Link>
-                            <Link className="w-[200px] block" to="collections/converse">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >Converse - Vans</NavigationMenuLink>
-                            </Link>
-                            <Link className="w-[200px] block" to="collections/chinh-hang">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >Chính hãng</NavigationMenuLink>
-                            </Link>
-                            <Link className="w-[200px] block" to="collections/phu-kien">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >Phụ kiện</NavigationMenuLink>
-                            </Link>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                </NavigationMenuList>
-            </NavigationMenu>
-            <NavigationMenu>
-                <NavigationMenuList>
-                    <NavigationMenuItem>
-                        <Link to="/">
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            Mua 1 tặng 1
-                            </NavigationMenuLink>
-                        </Link>
-                    </NavigationMenuItem>
-                </NavigationMenuList>
-            </NavigationMenu>
-            <NavigationMenu>
-                <NavigationMenuList>
-                    <NavigationMenuItem>
-                        <Link to="/">
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            Hệ thống cửa hàng
-                            </NavigationMenuLink>
-                        </Link>
-                    </NavigationMenuItem>
-                </NavigationMenuList>
-            </NavigationMenu>
-            <NavigationMenu>
-                <NavigationMenuList>
-                    <NavigationMenuItem>
-                    <NavigationMenuTrigger className="hover:bg-transparent">Chính sách</NavigationMenuTrigger>
-                        <NavigationMenuContent className="py-3 w-[300px]">
-                            <Link className="w-[200px] block" to="/quy-che-hoat-dong">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >Quy chế hoạt động</NavigationMenuLink>
-                            </Link>
-                            <Link className="w-[200px] block" to="/chinh-sach-dat-hang">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >Chính sách đặt hàng và thanh toán</NavigationMenuLink>
-                            </Link>
-                            <Link className="w-[200px] block" to="/chinh-sach-doi-tra">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >Chính sách đổi trả và bảo hành</NavigationMenuLink>
-                            </Link>
-                            <Link className="w-[200px] block" to="/chinh-sach-can-chuyen">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >Chính sách vận chuyển giao hàng</NavigationMenuLink>
-                            </Link>
-                            <Link className="w-[200px] block" to="/chinh-sach-bao-mat">
-                                <NavigationMenuLink className="text-sm block p-2 px-5 hover:bg-neutral-100 transition-all cursor-pointer" >Chính sách bảo mật thông tin</NavigationMenuLink>
-                            </Link>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                </NavigationMenuList>
-            </NavigationMenu> */}
             </div>
         </header>
     )

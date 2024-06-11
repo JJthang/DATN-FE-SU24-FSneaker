@@ -7,10 +7,6 @@ export default function ProductItem({ _id, IdImages, name, sizes, price, promoti
     return (
         <Link to={`/products/${_id}`} className='cursor-pointer group'>
             <div className='pt-6 relative pb-3 overflow-hidden'>
-                {/* <span className='absolute text-xs p-1 px-2 bg-red-500 rounded-full inline-flex item-center gap-1 text-white items-center w-fit top-0 left-2'>
-                <Zap size={10} />
-                -53%
-            </span> */}
                 <div className='relative rounded-md overflow-hidden'>
                     <img
                         src={
