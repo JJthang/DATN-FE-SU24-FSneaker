@@ -3,30 +3,38 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Slider } from '@/components/ui/slider'
-import ProductItem from '@/features/product/_components/product-item'
-import { getCategory, getCategoryDetails } from '@/services/category/requests'
-import { IFCATEGORY_DETAIL, IFPRODUCT_DETAIL } from '@/types/category'
+import { filterCategoryByPrice, getCategoryDetails } from '@/services/category/requests'
+import { IFCATEGORY_DETAIL } from '@/types/category'
 import { EyeIcon, FilterIcon, ShoppingCartIcon } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { Link, useParams } from 'react-router-dom'
 import ReactSlider from 'react-slider'
 
 const Collection = () => {
     const { id: categoryId } = useParams()
-    const { data : data1} = useQuery({
+    const [sliderVal, setsliderVal] = useState(0);
+    
+    const { data : detailCategory} = useQuery({
         queryFn: () => getCategoryDetails(categoryId!),
-        queryKey: ['/categoryDetaikl', categoryId],
+        queryKey: ['/categoryDetail', categoryId],
     })
-    console.log(data1);
-    const { data } = useQuery({ queryFn: () => getCategory(String(categoryId)), queryKey: ['/category', categoryId], enabled: !!categoryId })
+   // const { data: Filter } = useQuery({
+   //     queryFn: () => filterCategoryByPrice(categoryId),
+   //     queryKey: ['filterCategory', categoryId]
+  //  })
+  useEffect(() => {
+    console.log(sliderVal);
+  },[sliderVal])
+
     const breadcrumb: IBreadCrumb[] = [
         {
-            title: data?.name || ''
+            title: detailCategory && detailCategory[0]?.nameCategory || ''
         }
     ]
 
     const renderItemProduct = (vals: IFCATEGORY_DETAIL) => {
-        return <Link to={`/products/${vals.productDetails[0].productDetailId}`} className='cursor-pointer group'>
+        return <Link key={vals.productId} to={`/products/${vals.productDetails[0].productDetailId}`} className='cursor-pointer group'>
         <div className='pt-6 relative pb-3 overflow-hidden'>
             <div className='relative rounded-md overflow-hidden'>
                 <img
@@ -73,20 +81,20 @@ const Collection = () => {
             <BreadCrumb links={breadcrumb} />
             <div className='app-container text-[#333] flex gap-10 pt-5'>
                 <div className='w-[300px] h-20 md:block hidden'>
-                    <FilerSection />
+                    <FilerSection setsliderVal={setsliderVal} sliderVal={sliderVal} />
                 </div>
                 <div className='flex-1'>
                     <div className='flex md:items-center gap-3 flex-col md:flex-row'>
                         <div className='flex-1 flex items-center gap-3'>
-                            <h1 className='text-2xl'>{data1 && data1[0]?.nameCategory}</h1>
-                            <p className='text-sm relative top-1 flex-1'>{data1?.length || 0} sản phẩm </p>
+                            <h1 className='text-2xl'>{detailCategory && detailCategory[0]?.nameCategory}</h1>
+                            <p className='text-sm relative top-1 flex-1'>{detailCategory?.length || 0} sản phẩm </p>
                         </div>
                         <div className='flex gap-3 items-center'>
                             <div className='flex-1 md:hidden'>
                                 <Sheet>
                                     <SheetTrigger>
                                         <button className='outline-none flex gap-2 items-center border border-neutral-200 py-2 px-4 rounded-md text-sm'>
-                                            Bộ Lọc
+                                            Bộ Lọc 
                                             <FilterIcon size={16} />
                                         </button>
                                     </SheetTrigger>
@@ -118,16 +126,16 @@ const Collection = () => {
                         </div>
                     </div>
                     <div className='mt-5 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-x-3 gap-y-5'>
-                        {data1?.map((product) => (renderItemProduct(product)))}
+                        {detailCategory?.map((product) => (renderItemProduct(product)))}
                     </div>
-                    {data1 && data1?.length < 1 && (<div className='w-full h-[300px] flex justify-center items-center'>No Data</div>)}
+                    {detailCategory && detailCategory?.length < 1 && (<div className='w-full h-[300px] flex justify-center items-center'>No Data</div>)}
                 </div>
             </div>
         </div>
     )
 }
 
-const FilerSection = () => {
+const FilerSection = ({ setsliderVal, sliderVal }: {setsliderVal: any, sliderVal: any}) => {
     return (
         <>
             <h1 className='text-2xl'>Bộ lọc</h1>
@@ -140,13 +148,18 @@ const FilerSection = () => {
                                 className='horizontal-slider'
                                 thumbClassName='w-4 h-4 bg-neutral-700 rounded-full hidden'
                                 trackClassName='pt-3'
+                                onChange={(e) => {
+                                    setsliderVal(e);
+                                 }}
                                 defaultValue={[0, 100000]}
                                 ariaValuetext={(state: any) => `Thumb value ${state.valueNow}`}
                                 renderThumb={(props: any, state: any) => <div {...props}>{state.valueNow}</div>}
                                 pearling
                                 minDistance={10}
                             />
-                            <Slider defaultValue={[33]} max={100} step={1} min={20} />
+                            <Slider defaultValue={[sliderVal]} onValueChange={(e) => {
+                                setsliderVal(e);
+                            }} max={100} step={1} min={20} />
 
                             <div className='mt-4 flex items-center justify-between'>
                                 <span className='text-sm font-bold'>1.000.000 đ</span>
